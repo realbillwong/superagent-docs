@@ -1,6 +1,13 @@
-Superagnt 是一个轻量级的渐进式同构版本 HTTP 请求库，支持许多高级 HTTP 客户端功能。
+SuperAgent 是一个轻量级的渐进式同构版本 HTTP 请求库，Client 端和 Nodejs 端 API 接口完全相同，支持许多高级 HTTP 客户端功能。
 
-Small progressive client-side HTTP request library, and Node.js module with the same API, supporting many high-level HTTP client features
+项目地址：[visionmedia/superagent](https://github.com/visionmedia/superagent)
+
+[![build status](https://img.shields.io/travis/visionmedia/superagent.svg)](https://travis-ci.org/visionmedia/superagent)
+[![code coverage](https://img.shields.io/codecov/c/github/visionmedia/superagent.svg)](https://codecov.io/gh/visionmedia/superagent)
+[![code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![made with lass](https://img.shields.io/badge/made_with-lass-95CC28.svg)](https://lass.js.org)
+[![license](https://img.shields.io/github/license/visionmedia/superagent.svg)](LICENSE)
 
 ## 安装
 
@@ -17,20 +24,20 @@ yarn add superagent
 ```js
 const superagent = require('superagent');
 
-// callback
+// callback 写法
 superagent
   .post('/api/pet')
-  .send({ name: 'Manny', species: 'cat' }) // sends a JSON post body
+  .send({ name: 'Manny', species: 'cat' }) // 发送 JSON 的 POST 请求
   .set('X-API-Key', 'foobar')
   .set('accept', 'json')
   .end((err, res) => {
-    // Calling the end function will send the request
+    // 当调用 end 这个函数时才会真正的发送请求
   });
 
-// promise with then/catch
+// promise 写法
 superagent.post('/api/pet').then(console.log).catch(console.error);
 
-// promise with async/await
+// async/await 写法
 (async () => {
   try {
     const res = await superagent.post('/api/pet');
@@ -43,34 +50,31 @@ superagent.post('/api/pet').then(console.log).catch(console.error);
 
 ### Browser
 
-**The browser-ready, minified version of `superagent` is only 6 KB (minified and gzipped)!**
+**压缩后的 `Superagent` js 文件只有 6KB（gzip 后）**
 
-Browser-ready versions of this module are available via [jsdelivr][], [unpkg][], and also in the `node_modules/superagent/dist` folder in downloads of the `superagent` package.
+浏览器端的 js 文件可以在 [jsdelivr][], [unpkg][] 上找到，或者在 `node_modules/superagent/dist` 目录下。
 
-> Note that we also provide unminified versions with `.js` instead of `.min.js` file extensions.
+> 注：以上地方均可以找到 `.js` 和 `.min.js` 两个版本，生产环境请使用 `.min.js` 版本
 
 #### VanillaJS
 
-This is the solution for you if you're just using `<script>` tags everywhere!
+通过 `<script>` 标签的方式引用：
 
 ```html
 <script src="https://polyfill.io/v3/polyfill.min.js?features=Array.from,Promise,Symbol,Object.setPrototypeOf,Object.getOwnPropertySymbols"></script>
 <script src="https://cdn.jsdelivr.net/npm/superagent"></script>
-<!-- if you wish to use unpkg.com instead: -->
+<!-- 或者使用下面的 unpkg.com 源: -->
 <!-- <script src="https://unpkg.com/superagent"></script> -->
 <script type="text/javascript">
   (function() {
-    // superagent is exposed as `window.superagent`
-    // if you wish to use "request" instead please
-    // uncomment the following line of code:
-    // `window.request = superagent;`
+    // superagent 会暴露在 `window` 这个全局对象上
     superagent
       .post('/api/pet')
-      .send({ name: 'Manny', species: 'cat' }) // sends a JSON post body
+      .send({ name: 'Manny', species: 'cat' })
       .set('X-API-Key', 'foobar')
       .set('accept', 'json')
       .end(function (err, res) {
-        // Calling the end function will send the request
+        // 发出请求
       });
   })();
 </script>
@@ -78,8 +82,7 @@ This is the solution for you if you're just using `<script>` tags everywhere!
 
 #### Bundler
 
-If you are using [browserify][], [webpack][], [rollup][], or another bundler, then you can follow the same usage as [Node](#node) above.
-
+如果是用 [browserify][], [webpack][], [rollup][], 或者其他打包工具的话，使用方式同上面 [Node](#node).
 
 ## 支持程度
 
@@ -121,21 +124,20 @@ If you are using [browserify][], [webpack][], [rollup][], or another bundler, th
   samsung 7.2-7.4
   ```
 
-### Required Browser Features
+### 浏览器特性要求
 
-We recommend using <https://polyfill.io> (specifically with the bundle mentioned in [VanillaJS](#vanillajs) above):
+推荐使用 <https://polyfill.io> 的方式来解决低版本浏览器不能使用的问题，代码参考上面 [VanillaJS](#vanillajs) 小结。
 
 ```html
 <script src="https://polyfill.io/v3/polyfill.min.js?features=Array.from,Promise,Symbol,Object.setPrototypeOf,Object.getOwnPropertySymbols"></script>
 ```
 
-* IE 9-10 requires a polyfill for `Promise`, `Array.from`, `Symbol`, `Object.getOwnPropertySymbols`, and `Object.setPrototypeOf`
-* IE 9 requires a polyfill for `window.FormData` (we recommend [formdata-polyfill][])
-
+* IE 9-10 需要 polyfill 包括 `Promise`, `Array.from`, `Symbol`, `Object.getOwnPropertySymbols`, and `Object.setPrototypeOf`
+* IE 9 需要 polyfill 包括 `window.FormData` (推荐 [formdata-polyfill][])
 
 ## 插件
 
-SuperAgent is easily extended via plugins.
+SuperAgent 可以轻松的通过插件来扩展。
 
 ```js
 const nocache = require('superagent-no-cache');
@@ -144,15 +146,15 @@ const prefix = require('superagent-prefix')('/static');
 
 superagent
   .get('/some-url')
-  .query({ action: 'edit', city: 'London' }) // query string
-  .use(prefix) // Prefixes *only* this request
-  .use(nocache) // Prevents caching of *only* this request
+  .query({ action: 'edit', city: 'London' })
+  .use(prefix) // 只给**当前请求**添加前缀
+  .use(nocache) // 只给**当前请求**禁用缓存
   .end((err, res) => {
-    // Do something
+    // 发送请求
   });
 ```
 
-Existing plugins:
+社区已有插件列表：
 
 * [superagent-no-cache](https://github.com/johntron/superagent-no-cache) - prevents caching by including Cache-Control header
 * [superagent-prefix](https://github.com/johntron/superagent-prefix) - prefixes absolute URLs (useful in test environment)
@@ -170,9 +172,7 @@ Existing plugins:
 * [superagent-declare](https://github.com/damoclark/superagent-declare) - A simple [declarative](https://en.wikipedia.org/wiki/Declarative_programming) API for SuperAgent
 * [superagent-node-http-timings](https://github.com/webuniverseio/superagent-node-http-timings) - measure http timings in node.js
 
-Please prefix your plugin with `superagent-*` so that it can easily be found by others.
-
-For SuperAgent extensions such as couchdb and oauth visit the [wiki](https://github.com/visionmedia/superagent/wiki).
+如果你需要开发 Superagent 的插件的话，请务必命名为 `superagent-*` 格式，这样方便其他用户发现它。
 
 [formdata-polyfill]: https://www.npmjs.com/package/formdata-polyfill
 
