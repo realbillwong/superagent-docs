@@ -1,20 +1,20 @@
 # 支持 Promise
 
-SuperAgent's request is a "thenable" object that's compatible with JavaScript promises and the `async`/`await` syntax.
+SuperAgent 的请求是一个`thenable` 对象，该对象与 JavaScript Promise 和 `async/await` 语法兼容。
 
 ```js
-    const res = await request.get(url);
+const res = await request.get(url);
 ```
 
-If you're using promises, **do not** call `.end()` or `.pipe()`. Any use of `.then()` or `await` disables all other ways of using the request.
+如果您使用的是 `Promise`，请**不要**调用 `.end()` 或 `.pipe()`。 当用 `.then()` 或 `await` 的方式时，都会禁用其他使用请求的方式。
 
-Libraries like [co](https://github.com/tj/co) or a web framework like [koa](https://github.com/koajs/koa) can `yield` on any SuperAgent method:
+像 [co](https://github.com/tj/co) 之类的库或 [koa](https://github.com/koajs/koa) 之类的框架都可以在任何 SuperAgent 方法上 `yield`：
 
 ```js
-    const req = request
-      .get('http://local')
-      .auth('tobi', 'learnboost');
-    const res = yield req;
+const req = request
+  .get('http://local')
+  .auth('tobi', 'learnboost');
+const res = yield req;
 ```
 
-Note that SuperAgent expects the global `Promise` object to be present. You'll need a polyfill to use promises in Internet Explorer or Node.js 0.10.
+注意，SuperAgent 使用了全局的 `Promise` 对象，因此你需要使用 polyfill 才能在 Internet Explorer 或 Node.js 0.10 中使用 Promise。

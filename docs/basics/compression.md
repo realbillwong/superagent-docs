@@ -1,3 +1,3 @@
 # 压缩
 
-The node client supports compressed responses, best of all, you don't have to do anything! It just works.
+Nodejs 端会自动压缩响应内容，您无需配置！

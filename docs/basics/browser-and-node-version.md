@@ -1,9 +1,11 @@
 # 同构
 
-SuperAgent has two implementations: one for web browsers (using XHR) and one for Node.JS (using core http module). By default Browserify and WebPack will pick the browser version.
+SuperAgent 有两种实现：一种用于 Web 浏览器（使用 XHR ），另一种用于 Node.js （使用核心 http 模块）。 默认情况下，Browserify 和 WebPack 将选择浏览器版本。
 
-If want to use WebPack to compile code for Node.JS, you *must* specify [node target](https://webpack.github.io/docs/configuration.html#target) in its configuration.
+如果要使用 WebPack 为 Node.js 编译代码，则**必须**在其配置中指定 [node target](https://webpack.github.io/docs/configuration.html#target)。
 
-## Using browser version in electron
+## 在 Electron 中使用 Browser 版本
 
-[Electron](https://electron.atom.io/) developers report if you would prefer to use the browser version of SuperAgent instead of the Node version, you can `require('superagent/superagent')`. Your requests will now show up in the Chrome developer tools Network tab. Note this environment is not covered by automated test suite and not officially supported.
+[Electron](https://electron.atom.io/) 开发人员报告，如果你更喜欢使用 SuperAgent 的浏览器版本而不是 Node 版本，则可以 `require('superagent/superagent')`。
+
+这样你的请求将显示在 Chrome 开发者工具的“网络”标签中。请注意，自动测试套件未涵盖此环境，并且未正式支持该环境。

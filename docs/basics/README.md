@@ -1,72 +1,74 @@
 # 基础用法
 
-A request can be initiated by invoking the appropriate method on the `request` object, then calling `.then()` (or `.end()` [or `await`](#promise-and-generator-support)) to send the request. For example a simple __GET__ request:
+可以通过在 `request` 对象上调用适当的方法来发起请求，然后调用 `.then()` （或 `.end()` 或 [`await`](/basics/promise.html)） 发送请求。
+
+例如一个简单的__GET__请求：
 
 ```js
-     request
-       .get('/search')
-       .then(res => {
-          // res.body, res.headers, res.status
-       })
-       .catch(err => {
-          // err.message, err.response
-       });
+request
+  .get('/search')
+  .then(res => {
+     // res.body, res.headers, res.status
+  })
+  .catch(err => {
+     // err.message, err.response
+  });
+```
+HTTP 方法也可以作为字符串传递：
+
+```js
+request('GET', '/search').then(success, failure);
 ```
 
-HTTP method may also be passed as a string:
+还支持老式的回调方式，但不建议使用。可以调用 `.end()` 来代替 `.then()`：
 
 ```js
-    request('GET', '/search').then(success, failure);
+request('GET', '/search').end(function(err, res){
+  if (res.ok) {}
+});
 ```
 
-Old-style callbacks are also supported, but not recommended. *Instead of* `.then()` you can call `.end()`:
+可以使用绝对 URL，在 Web 浏览器中，仅当服务器实现 [CORS](/advanced/cors.html) 时，绝对 URL 才起作用。
 
 ```js
-    request('GET', '/search').end(function(err, res){
-      if (res.ok) {}
-    });
+request
+  .get('https://example.com/search')
+  .then(res => {
+
+  });
 ```
 
-Absolute URLs can be used. In web browsers absolute URLs work only if the server implements [CORS](#cors).
+__Node__ 客户端支持向 [Unix Domain Sockets](https://en.wikipedia.org/wiki/Unix_domain_socket) 发出请求：
 
 ```js
-     request
-       .get('https://example.com/search')
-       .then(res => {
-
-       });
+// pattern: https?+unix://SOCKET_PATH/REQUEST_PATH
+//          Use `%2F` as `/` in SOCKET_PATH
+try {
+  const res = await request
+    .get('http+unix://%2Fabsolute%2Fpath%2Fto%2Funix.sock/search');
+  // res.body, res.headers, res.status
+} catch(err) {
+  // err.message, err.response
+}
 ```
 
-The __Node__ client supports making requests to [Unix Domain Sockets](https://en.wikipedia.org/wiki/Unix_domain_socket):
+__DELETE__、__HEAD__、__PATCH__、__POST__ 和 __PUT__ 类的请求同样可以使用。
 
 ```js
-    // pattern: https?+unix://SOCKET_PATH/REQUEST_PATH
-    //          Use `%2F` as `/` in SOCKET_PATH
-    try {
-      const res = await request
-        .get('http+unix://%2Fabsolute%2Fpath%2Fto%2Funix.sock/search');
-      // res.body, res.headers, res.status
-    } catch(err) {
-      // err.message, err.response
-    }
+request
+  .head('/favicon.ico')
+  .then(res => {
+
+  });
 ```
 
-__DELETE__, __HEAD__, __PATCH__, __POST__, and __PUT__ requests can also be used, simply change the method name:
+__DELETE__ 请求也可以通过 `.del()` 的方式调用，以兼容旧的 IE。注意，是 `del` 不是 `delete`，因为 `delete`
+是保留字段。
+
+HTTP 方法默认为 __GET__，因此，下面的请求是一个有效的 __GET__ 请求：
 
 ```js
-    request
-      .head('/favicon.ico')
-      .then(res => {
+request('/search', (err, res) => {
 
-      });
-```
-
-__DELETE__ can be also called as `.del()` for compatibility with old IE where `delete` is a reserved word.
-
-The HTTP method defaults to __GET__, so if you wish, the following is valid:
-
-```js
-     request('/search', (err, res) => {
-
-     });
+});
 ```
