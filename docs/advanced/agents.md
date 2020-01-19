@@ -1,31 +1,31 @@
-# Agents for global state
+# 全局 Agents
 
-## Saving cookies
+## 保存 Cookies
 
-In Node SuperAgent does not save cookies by default, but you can use the `.agent()` method to create a copy of SuperAgent that saves cookies. Each copy has a separate cookie jar.
-
-```js
-    const agent = request.agent();
-    agent
-      .post('/login')
-      .then(() => {
-        return agent.get('/cookied-page');
-      });
-```
-
-In browsers cookies are managed automatically by the browser, so the `.agent()` does not isolate cookies.
-
-## Default options for multiple requests
-
-Regular request methods called on the agent will be used as defaults for all requests made by that agent.
+默认情况下在 Node 中，SuperAgent 不会保存 cookie，但是你可以使用 `.agent()` 方法来创建保存 cookie 的 SuperAgent 副本。 这样每个副本都会有一个单独的 Cookie。
 
 ```js
-    const agent = request.agent()
-      .use(plugin)
-      .auth(shared);
-
-    await agent.get('/with-plugin-and-auth');
-    await agent.get('/also-with-plugin-and-auth');
+const agent = request.agent();
+agent
+  .post('/login')
+  .then(() => {
+    return agent.get('/cookied-page');
+  });
 ```
 
-The complete list of methods that the agent can use to set defaults is: `use`, `on`, `once`, `set`, `query`, `type`, `accept`, `auth`, `withCredentials`, `sortQuery`, `retry`, `ok`, `redirects`, `timeout`, `buffer`, `serialize`, `parse`, `ca`, `key`, `pfx`, `cert`.
+在浏览器中，cookie 由浏览器自动管理，因此 `.agent()` 不会隔离 cookie。
+
+## 多个请求的默认选项
+
+所有在同一个 Agent 上发出的请求，都将拥有该 Agent 的全部属性。
+
+```js
+const agent = request.agent()
+  .use(plugin)
+  .auth(shared);
+
+await agent.get('/with-plugin-and-auth');
+await agent.get('/also-with-plugin-and-auth');
+```
+
+Agent 可用于设置默认值的方法的完整列表为：`use`, `on`, `once`, `set`, `query`, `type`, `accept`, `auth`, `withCredentials`, `sortQuery`, `retry`, `ok`, `redirects`, `timeout`, `buffer`, `serialize`, `parse`, `ca`, `key`, `pfx`, `cert`.

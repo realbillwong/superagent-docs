@@ -1,18 +1,18 @@
 # TLS 选项
 
-In Node.js SuperAgent supports methods to configure HTTPS requests:
+在 Node.js 中，SuperAgent 支持配置 HTTPS 请求的方法：
 
-- `.ca()`: Set the CA certificate(s) to trust
-- `.cert()`: Set the client certificate chain(s)
-- `.key()`: Set the client private key(s)
-- `.pfx()`: Set the client PFX or PKCS12 encoded private key and certificate chain
-- `.disableTLSCerts()`: Does not reject expired or invalid TLS certs. Sets internally `rejectUnauthorized=true`. *Be warned, this method allows MITM attacks.*
+- `.ca()`: 将 CA 证书设置为信任
+- `.cert()`: 设置客户端证书链
+- `.key()`: 设置客户端私钥
+- `.pfx()`: 设置客户端 PFX 或 PKCS12 编码的私钥和证书链
+- `.disableTLSCerts()`: 不拒绝过期或无效的TLS证书，内部设置 `rejectUnauthorized = true`。 **请注意，此方法可能会被 MITM 攻击。**
 
-For more information, see Node.js [https.request docs](https://nodejs.org/api/https.html#https_https_request_options_callback).
+有关更多信息，请参见Node.js [https.request docs](https://nodejs.org/api/https.html#https_https_request_options_callback).
 
 ```js
-var key = fs.readFileSync('key.pem'),
-    cert = fs.readFileSync('cert.pem');
+const key = fs.readFileSync('key.pem');
+cosnt cert = fs.readFileSync('cert.pem');
 
 request
   .post('/client-auth')
@@ -22,7 +22,7 @@ request
 ```
 
 ```js
-var ca = fs.readFileSync('ca.cert.pem');
+const ca = fs.readFileSync('ca.cert.pem');
 
 request
   .post('https://localhost/private-ca-server')

@@ -185,3 +185,12 @@ superagent
 [webpack]: https://github.com/webpack/webpack
 
 [rollup]: https://github.com/rollup/rollup
+
+## 贡献者
+
+| Name                |
+| ------------------- |
+| **Kornel Lesiński** |
+| **Peter Lyons**     |
+| **Hunter Loftis**   |
+| **Nick Baugh**      |
