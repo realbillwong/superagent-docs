@@ -1,35 +1,42 @@
 # Multipart 请求
 
-SuperAgent is also great for _building_ multipart requests for which it provides methods `.attach()` and `.field()`.
+SuperAgent 提供了 `.attach()` 和 `.field()` 两个方法来构建 Multipart 请求。
 
-When you use `.field()` or `.attach()` you can't use `.send()` and you *must not* set `Content-Type` (the correct type will be set for you).
+当你用 `.attach()` 或者 `.field()` 的时候，你无法调用 `.send()` 方法，并且你**不能**设置
+`Content-Type`，SuperAgent 会自动添加正确的 `Content-Type`。
 
-## Attaching files
+##
+## 附加文件
 
-To send a file use `.attach(name, [file], [options])`. You can attach multiple files by calling `.attach` multiple times. The arguments are:
+通过调用 `.attarch(name, [file], [options])` 方法来发送一个文件。可以多次调用以发送多个文件。
 
- * `name` — field name in the form.
- * `file` — either string with file path or `Blob`/`Buffer` object.
- * `options` — (optional) either string with custom file name or `{filename: string}` object. In Node also `{contentType: 'mime/type'}` is supported. In browser create a `Blob` with an appropriate type instead.
+`attach` 方法的参数如下：
+
+* `name` — 字段名
+* `file` — 文件路径字符串或者 `Blob`/`Buffer` 对象
+* `options` — （可选参数）文件名字符串或者 `{filename: string}` 对象。在 Nodejs 端还可以传 `{contentType: 'mime/type'}`，浏览器端用适当的类型的 `Blob`。
+
 ```js
-    request
-      .post('/upload')
-      .attach('image1', 'path/to/felix.jpeg')
-      .attach('image2', imageBuffer, 'luna.jpeg')
-      .field('caption', 'My cats')
-      .then(callback);
+request
+  .post('/upload')
+  .attach('image1', 'path/to/felix.jpeg')
+  .attach('image2', imageBuffer, 'luna.jpeg')
+  .field('caption', 'My cats')
+  .then(callback);
 ```
 
-## Field values
+## Field 值
 
-Much like form fields in HTML, you can set field values with `.field(name, value)` and `.field({name: value})`. Suppose you want to upload a few images with your name and email, your request might look something like this:
+类似于 HTML 中的表单字段，你可以通过 `.field(name, value)` 和 `.field({ name: value })`
+来设置字段值。
+
+假设你想上传头像、昵称和邮箱，那么你的请求应该看起来下面这样：
 
 ```js
-     request
-       .post('/upload')
-       .field('user[name]', 'Tobi')
-       .field('user[email]', 'tobi@learnboost.com')
-       .field('friends[]', ['loki', 'jane'])
-       .attach('image', 'path/to/tobi.png')
-       .then(callback);
+ request
+   .post('/upload')
+   .field('user[name]', 'superagnet')
+   .field('user[email]', 'test@example.com')
+   .attach('image', 'path/to/superagent.png')
+   .then(callback);
 ```
