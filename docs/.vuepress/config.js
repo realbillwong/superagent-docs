@@ -44,8 +44,8 @@ module.exports = {
                     title: 'Response',
                     collapsable: false,
                     children: [
-                        'response/parsing',
                         'response/properties',
+                        'response/parsing',
                         'response/buffering',
                         'response/error-handling',
                     ],

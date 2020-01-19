@@ -1,5 +1,5 @@
-# Buffering responses
+# Buffering
 
-To force buffering of response bodies as `res.text` you may invoke `req.buffer()`. To undo the default of buffering for text responses such as "text/plain", "text/html" etc you may invoke `req.buffer(false)`.
+要强制将响应主体缓冲为 `res.text`，你可以调用 `req.buffer()`。要撤消默认的文本响应缓冲，例如 `text/plain`，`text/html` 等，可以调用 `req.buffer(false)` 取消。
 
-When buffered the `res.buffered` flag is provided, you may use this to handle both buffered and unbuffered responses in the same callback.
+当你用 `res.buffered` 开启 Buffering 时，你可以使用它在同一回调中的处理缓冲和非缓冲响应。
