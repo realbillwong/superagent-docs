@@ -1,9 +1,12 @@
 module.exports = {
-    title: 'Superagent - 简单的轻量级同构 HTTP 请求库',
+    title: 'Superagent中文文档 - 一个简单的轻量级同构Ajax请求库',
     description:
-        'SuperAgent 是作者对现有 HTTP 请求库 API 感到不爽之后，创造出来的一个轻量级的渐进式 Ajax 请求库，旨在实现灵活性，可读性和低学习曲线。同时 SuperAgent 也可以在 Node.js 中一起使用！Client 端和 Nodejs 端 API 接口完全相同，支持许多高级 HTTP 客户端功能。',
+        'SuperAgent 是著名大神 TJ Holowaychuk 对市面上现有 HTTP 请求库 API 感到不爽之后，创造出来的一个轻量级的渐进式 Ajax 请求库，旨在实现灵活性，API 可读性和低学习曲线。同时 SuperAgent 也可以在 Node.js 中一起使用！Client 端和 Nodejs 端 API 接口完全相同，另外还支持许多高级 HTTP 客户端功能。',
     head: [
         ['meta', { name: 'baidu-site-verification', content: 'gI0hKVU4ll' }],
+        ['meta', { name: '360-site-verification', content: '82a1ab701bbbcc264b31590ae2b738a1' }],
+        ['meta', { name: 'google-site-verification', content: 'c_XV7ye4-MEvaD9uIwg1iYvDMjyMAdknbmA3vHIAV0g' }],
+        ['meta', { name: 'sogou_site_verification', content: 'p2eJdXqgfc' }],
         ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' }]
     ],
     themeConfig: {
