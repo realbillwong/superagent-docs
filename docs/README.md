@@ -149,8 +149,8 @@ const prefix = require('superagent-prefix')('/static');
 superagent
   .get('/some-url')
   .query({ action: 'edit', city: 'London' })
-  .use(prefix) // 只给**当前请求**添加前缀
-  .use(nocache) // 只给**当前请求**禁用缓存
+  .use(prefix) // 只给当前请求添加前缀
+  .use(nocache) // 只给当前请求禁用缓存
   .end((err, res) => {
     // 发送请求
   });

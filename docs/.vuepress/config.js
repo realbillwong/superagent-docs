@@ -5,12 +5,31 @@ module.exports = {
     head: [
         ['meta', { name: 'baidu-site-verification', content: 'gI0hKVU4ll' }],
         ['meta', { name: '360-site-verification', content: '82a1ab701bbbcc264b31590ae2b738a1' }],
-        ['meta', { name: 'google-site-verification', content: 'c_XV7ye4-MEvaD9uIwg1iYvDMjyMAdknbmA3vHIAV0g' }],
+        [
+            'meta',
+            {
+                name: 'google-site-verification',
+                content: 'c_XV7ye4-MEvaD9uIwg1iYvDMjyMAdknbmA3vHIAV0g',
+            },
+        ],
         ['meta', { name: 'sogou_site_verification', content: 'p2eJdXqgfc' }],
-        ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' }]
+        [
+            'meta',
+            { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' },
+        ],
     ],
+    locales: {
+        '/': {
+            lang: 'zh-CN',
+        },
+    },
     themeConfig: {
-        lastUpdated: true,
+        repo: 'realbillwong/superagent-docs',
+        editLinks: true,
+        editLinkText: '编辑此页',
+        lastUpdated: '上次更新',
+        adsConfig: [],
+        nav: [{ text: 'English', link: 'https://visionmedia.github.io/superagent/' }],
         sidebar: {
             '/': [
                 {
@@ -74,11 +93,29 @@ module.exports = {
     },
     dest: 'public',
     plugins: [
-        '@vuepress/back-to-top',
+        ['@vuepress/back-to-top', true],
         [
             '@vuepress/google-analytics',
             {
                 ga: 'UA-142176129-2',
+            },
+        ],
+        [
+            '@vuepress/last-updated',
+            {
+                transformer: (timestamp, lang) => {
+                    const lowerLang = lang.toLowerCase();
+                    const dayjs = require('dayjs');
+                    require(`dayjs/locale/${lowerLang}`);
+                    dayjs.locale(lowerLang);
+                    return dayjs(timestamp).format('YYYY-MM-DD HH:mm:ss');
+                },
+            },
+        ],
+        [
+            'sitemap',
+            {
+                hostname: 'https://superagent.org.cn/',
             },
         ],
     ],
