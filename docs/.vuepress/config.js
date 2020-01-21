@@ -103,11 +103,10 @@ module.exports = {
         [
             '@vuepress/last-updated',
             {
-                transformer: (timestamp, lang) => {
-                    const lowerLang = lang.toLowerCase();
+                transformer: (timestamp) => {
                     const dayjs = require('dayjs');
-                    require(`dayjs/locale/${lowerLang}`);
-                    dayjs.locale(lowerLang);
+                    require(`dayjs/locale/zh-cn`);
+                    dayjs.locale('zh-cn');
                     return dayjs(timestamp).format('YYYY-MM-DD HH:mm:ss');
                 },
             },
