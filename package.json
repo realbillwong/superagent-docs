@@ -11,7 +11,7 @@
     "@vuepress/plugin-active-header-links": "^1.2.0",
     "@vuepress/plugin-back-to-top": "^1.2.0",
     "@vuepress/plugin-google-analytics": "^1.2.0",
-    "dayjs": "^1.8.19",
+    "moment": "^2.24.0",
     "vuepress": "^1.2.0",
     "vuepress-plugin-sitemap": "^2.3.1"
   }

@@ -104,10 +104,9 @@ module.exports = {
             '@vuepress/last-updated',
             {
                 transformer: (timestamp) => {
-                    const dayjs = require('dayjs');
-                    require(`dayjs/locale/zh-cn`);
-                    dayjs.locale('zh-cn');
-                    return dayjs(timestamp).format('YYYY-MM-DD HH:mm:ss');
+                    const moment = require('moment');
+                    moment.locale('zh-cn');
+                    return moment(timestamp).format('YYYY-MM-DD HH:mm:ss');
                 },
             },
         ],
