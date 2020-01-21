@@ -100,16 +100,7 @@ module.exports = {
                 ga: 'UA-142176129-2',
             },
         ],
-        [
-            '@vuepress/last-updated',
-            {
-                transformer: (timestamp) => {
-                    const moment = require('moment');
-                    moment.locale('zh-cn');
-                    return moment(timestamp).format('YYYY-MM-DD HH:mm:ss');
-                },
-            },
-        ],
+        ['@vuepress/last-updated'],
         [
             'sitemap',
             {
