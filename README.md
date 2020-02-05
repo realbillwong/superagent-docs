@@ -3,7 +3,7 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/realbillwong/superagent-docs.svg?style=flat-square)](https://github.com/realbillwong/superagent-docs/commits/master)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-此 Repo 是 [SuperAgent](http://visionmedia.github.io/superagent/) 英文文档的中文翻译版，感谢 SuperAgent 开发者的付出。
+此 Repo 是 [SuperAgent](http://visionmedia.github.io/superagent/) 英文文档的中文翻译版，网站地址：[https://superagent.org.cn](https://superagent.org.cn)，感谢 SuperAgent 开发者的付出。
 
 ## Why
 
