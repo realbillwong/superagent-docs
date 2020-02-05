@@ -1,5 +1,5 @@
 module.exports = {
-    title: 'Superagent中文文档 - 一个简单的轻量级同构Ajax请求库',
+    title: 'SuperAgent中文文档 - 一个简单的轻量级同构Ajax请求库',
     description:
         'SuperAgent 是著名大神 TJ Holowaychuk 对市面上现有 HTTP 请求库 API 感到不爽之后，创造出来的一个轻量级的渐进式 Ajax 请求库，旨在实现灵活性，API 可读性和低学习曲线。同时 SuperAgent 也可以在 Node.js 中一起使用！Client 端和 Nodejs 端 API 接口完全相同，另外还支持许多高级 HTTP 客户端功能。',
     head: [
